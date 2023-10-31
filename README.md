@@ -39,7 +39,7 @@ Além disso, desejo a funcionalidade de dar nomes aos meus Pokémons e a capacid
 
 **Observações Importantes:**
 - Certifique-se de que o dashboard seja intuitivo e de fácil navegação.
-- QUeremos que ver sua habilidade em integração de API (NADA DE USAR WRAPPERS)
+- Queremos ver sua habilidade em integração de API (NADA DE USAR WRAPPERS)
 - O uso de TypeScript tanto no backend quanto no frontend é OBRIGATÓRIO.
 - A entrega do desafio deve ser feita via GitHub: crie um fork deste repositório e abra um pull request.
 - Backend e frontend devem ser entregues no mesmo repositório (não precisa configurar como monorepo, só separando as pastas já basta)
