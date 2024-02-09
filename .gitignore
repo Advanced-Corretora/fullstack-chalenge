@@ -56,7 +56,7 @@ backend/coverage
 /backend/yarn-error.log*
 
 # local env files
-/backend/.env*.local
+/backend/.env
 
 # typescript
 /backend/*.tsbuildinfo
