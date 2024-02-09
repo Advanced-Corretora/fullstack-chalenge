@@ -35,13 +35,13 @@
 
 
 # dependencies
-/backend/node_modules
-/backend/.pnp
-/backend/.pnp.js
-/backend/.yarn/install-state.gz
+backend/node_modules/
+backend/.pnp
+backend/.pnp.js
+backend/.yarn/install-state.gz
 
 # testing
-/backend/coverage
+backend/coverage
 
 # production
 /backend/build
