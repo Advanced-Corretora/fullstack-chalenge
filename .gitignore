@@ -1,0 +1,63 @@
+# dependencies
+/frontend/node_modules
+/frontend/.pnp
+/frontend/.pnp.js
+/frontend/.yarn/install-state.gz
+
+# testing
+/frontend/coverage
+
+# next.js
+/frontend/.next/
+/frontend/out/
+
+# production
+/frontend/build
+
+# misc
+/frontend/.DS_Store
+/frontend/*.pem
+
+# debug
+/frontend/npm-debug.log*
+/frontend/yarn-debug.log*
+/frontend/yarn-error.log*
+
+# local env files
+/frontend/.env*.local
+
+# vercel
+/frontend/.vercel
+
+# typescript
+/frontend/*.tsbuildinfo
+/frontend/next-env.d.ts
+
+
+# dependencies
+/backend/node_modules
+/backend/.pnp
+/backend/.pnp.js
+/backend/.yarn/install-state.gz
+
+# testing
+/backend/coverage
+
+# production
+/backend/build
+
+# misc
+/backend/.DS_Store
+/backend/*.pem
+
+# debug
+/backend/npm-debug.log*
+/backend/yarn-debug.log*
+/backend/yarn-error.log*
+
+# local env files
+/backend/.env*.local
+
+# typescript
+/backend/*.tsbuildinfo
+/backend/tsconfig.tsbuildinfo
