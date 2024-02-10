@@ -1,5 +1,3 @@
-
-
 export async function LoginRequest(data: {
   email?: string;
   password?: string;
@@ -13,7 +11,9 @@ export async function LoginRequest(data: {
       body: JSON.stringify(data),
     });
 
-    if (res.status === 200) return { success: true };
+    const response = await res.json();
+
+    if (res.status === 200) return { success: true, data: response };
   } catch (error) {
     return { success: false, error };
   }

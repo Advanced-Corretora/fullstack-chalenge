@@ -18,7 +18,7 @@ import { useRouter } from "next/navigation";
 
 export function AuthTabs() {
   const { toast } = useToast();
-  const router = useRouter()
+  const router = useRouter();
 
   async function handleLogin(data: FormData) {
     try {
@@ -30,7 +30,13 @@ export function AuthTabs() {
       const res = await LoginRequest(loginData);
 
       if (res?.success === true) {
-        router.push('/')
+        const montedData = {
+          email: res.data.email,
+          user_pokemons: res.data.user_pokemons,
+          id: res.data._id,
+        };
+        sessionStorage.setItem("user", JSON.stringify(montedData));
+        router.push("/");
         return toast({
           title: "Bem-vindo de volta!",
           description: "Você será redirecionado para o Dashboard.",

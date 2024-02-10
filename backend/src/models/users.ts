@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
+import PokemonSchema from "./pokemons";
 
-// User Config
 const UserSchema = new mongoose.Schema({
   email: { type: String, required: true },
   username: { type: String, required: true },
@@ -9,6 +9,10 @@ const UserSchema = new mongoose.Schema({
     salt: { type: String, select: false },
     sessionToken: { type: String, select: false },
   },
+  user_pokemons: {
+    type: [PokemonSchema],
+    default: [],
+  },
 });
 
-export const UserModel = mongoose.model('User', UserSchema);
+export const UserModel = mongoose.model("User", UserSchema);

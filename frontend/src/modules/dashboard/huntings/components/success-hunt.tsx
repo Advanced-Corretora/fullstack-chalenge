@@ -13,6 +13,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { Pokemon } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import { saveNewPokemon } from "../services";
 
 export function SuccessHunt({ pokemon, successHunt }: any) {
   const { toast } = useToast();
@@ -28,6 +29,26 @@ export function SuccessHunt({ pokemon, successHunt }: any) {
     } catch (error) {
       toast({
         title: "Erro ao buscar informações do Pokémon!",
+        description: "Tente novamente mais tarde.",
+      });
+    }
+  };
+
+  const user = sessionStorage.getItem("user");
+
+  const parsedUser = JSON.parse(user!);
+
+  const saveNewUserPokemon = async () => {
+    try {
+      await saveNewPokemon(pokemonInfo!, parsedUser.id);
+      toast({
+        title: "Obaaaaaa",
+        description: "Pokemon adicionado a sua pokedex",
+      });
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Erro ao salvar novo Pokémon!",
         description: "Tente novamente mais tarde.",
       });
     }
@@ -81,7 +102,8 @@ export function SuccessHunt({ pokemon, successHunt }: any) {
           </div>
         </div>
         <DialogFooter>
-          <Button type="submit">Save changes</Button>
+          <Button>Descartar</Button>
+          <Button onClick={() => saveNewUserPokemon()}>Salvar</Button>
         </DialogFooter>
       </DialogContent>
     </Dialog>
