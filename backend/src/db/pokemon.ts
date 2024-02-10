@@ -1,15 +1,15 @@
 import { UserModel } from "../models/users";
 
-export const getUserPokemons = (userId: string) => UserModel.findById(userId);
+export const getUserPokemons = (userId: string) =>
+  UserModel.findById(userId).select("user_pokemons");
 
-export const addPokemonToUser = (
+export const addPokemonToUser = async (
   userId: string,
   pokemonData: Record<string, any>
 ) =>
   UserModel.findByIdAndUpdate(userId, {
     $push: { user_pokemons: pokemonData },
   });
-
 export const updatePokemonById = (
   userId: string,
   pokemonId: string,

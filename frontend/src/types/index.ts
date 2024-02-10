@@ -35,7 +35,6 @@ export interface Pokemon {
   types: PokemonType[];
 }
 
-
 export interface PokemonSprites {
   front_default: string;
   front_shiny: string;
@@ -46,16 +45,16 @@ export interface PokemonSprites {
   back_female: string;
   back_shiny_female: string;
   other?: {
-      [key in string]?: {
-          [spriteName in string]?: string | null;
-      };
+    [key in string]?: {
+      [spriteName in string]?: string | null;
+    };
   };
   versions?: {
-      [version in string]?: {
-          [gameTitle in string]?: {
-              [spriteName in string]?: string;
-          };
+    [version in string]?: {
+      [gameTitle in string]?: {
+        [spriteName in string]?: string;
       };
+    };
   };
 }
 
@@ -95,4 +94,16 @@ export interface PokemonStat {
   stat: NamedAPIResource;
   effort: number;
   base_stat: number;
+}
+
+export interface UserPokemon {
+  base_experience: number;
+  captured_at: string;
+  id: number;
+  name: string;
+  stats: {
+    base_stat: number;
+    type: string;
+  }[];
+  image: string;
 }

@@ -3,19 +3,18 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { getNewPokemon } from "../services";
 import { SuccessHunt } from "./success-hunt";
 import { TargetPokemon } from "./locked-pokemon";
+import { useSession } from "next-auth/react";
 
 export function PokeBall() {
-  const router = useRouter();
-  const pathname = usePathname();
-
   const [isCapturing, setIsCapturing] = useState(false);
   const [successHunt, setSuccessHunt] = useState(false);
   const [pokemon, setPokemon] = useState(null);
+
+  // const { data } = useSession();
 
   const capturePokemon = async () => {
     try {
@@ -43,7 +42,7 @@ export function PokeBall() {
 
   return (
     <>
-          <TargetPokemon isCapturing={isCapturing} />
+      <TargetPokemon isCapturing={isCapturing} />
 
       <motion.div
         className="relative"

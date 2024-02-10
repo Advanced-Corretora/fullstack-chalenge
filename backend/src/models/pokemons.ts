@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
 
 const PokemonSchema = new mongoose.Schema({
-  name: { type: String, required: true },
+  name: { type: String },
   base_experience: { type: Number },
+  image: { type: String },
   weight: { type: Number },
   height: { type: Number },
   id: { type: Number },

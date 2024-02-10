@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { SidebarItems } from "@/lib/utils";
 import { FaArrowLeft, FaArrowRight, FaMoon } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
+import { signOut } from "next-auth/react";
 
 const footerItens = [
   {
@@ -19,6 +20,9 @@ const footerItens = [
   {
     to: "/",
     Name: "Sair",
+    onclick: async () => {
+      await signOut();
+    },
     Icon: FiLogOut,
   },
 ];
@@ -92,6 +96,7 @@ export default function Sidebar() {
         <menu className="flex items-center flex-col pt-8 border-t border-neutral_4">
           {footerItens.map((item, index) => (
             <motion.li
+              onClick={item.onclick}
               className="list-none flex gap-2 items-center cursor-pointer w-full px-4 py-4 rounded-2xl "
               key={index}
               initial={{ opacity: 0, x: -20 }}

@@ -1,4 +1,3 @@
-import { TargetPokemon } from "../components/locked-pokemon";
 import { PokeBall } from "../components/poke-ball";
 
 export default function HuntingPage() {

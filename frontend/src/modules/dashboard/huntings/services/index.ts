@@ -13,9 +13,10 @@ export async function getNewPokemon() {
   }
 }
 
-export async function saveNewPokemon(pokemon: Pokemon, userId: string) {
+export async function saveNewPokemon(pokemon: Pokemon, userId?: string) {
   const pokemonData = {
     name: pokemon.name,
+    image: pokemon.sprites.front_default,
     weigth: pokemon.weight,
     heigth: pokemon.height,
     base_experience: pokemon.base_experience,
@@ -30,6 +31,9 @@ export async function saveNewPokemon(pokemon: Pokemon, userId: string) {
   try {
     const res = await fetch(`http://localhost:3001/user/${userId}/pokemons`, {
       method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(pokemonData),
     });
     const data = await res.json();

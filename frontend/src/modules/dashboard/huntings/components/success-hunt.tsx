@@ -14,12 +14,14 @@ import { Pokemon } from "@/types";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { saveNewPokemon } from "../services";
+import { useSession } from "next-auth/react";
 
 export function SuccessHunt({ pokemon, successHunt }: any) {
   const { toast } = useToast();
 
   const [open, setOpen] = useState(successHunt);
   const [pokemonInfo, setPokemonInfo] = useState<Pokemon | null>(null);
+  const { data } = useSession();
 
   const getNewPokemonInfo = async () => {
     try {
@@ -34,19 +36,15 @@ export function SuccessHunt({ pokemon, successHunt }: any) {
     }
   };
 
-  const user = sessionStorage.getItem("user");
-
-  const parsedUser = JSON.parse(user!);
-
   const saveNewUserPokemon = async () => {
     try {
-      await saveNewPokemon(pokemonInfo!, parsedUser.id);
+      await saveNewPokemon(pokemonInfo!, data?.user._id);
       toast({
         title: "Obaaaaaa",
         description: "Pokemon adicionado a sua pokedex",
       });
+      setOpen(false);
     } catch (error) {
-      console.log(error);
       toast({
         title: "Erro ao salvar novo Pokémon!",
         description: "Tente novamente mais tarde.",

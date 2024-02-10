@@ -13,29 +13,22 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useToast } from "@/components/ui/use-toast";
-import { LoginRequest, RegisterRequest } from "../services";
+import { RegisterRequest } from "../services";
+import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 export function AuthTabs() {
   const { toast } = useToast();
   const router = useRouter();
-
   async function handleLogin(data: FormData) {
     try {
-      const loginData = {
+      const user = await signIn("credentials", {
+        redirect: false,
         email: data.get("email")?.toString(),
         password: data.get("password")?.toString(),
-      };
+      });
 
-      const res = await LoginRequest(loginData);
-
-      if (res?.success === true) {
-        const montedData = {
-          email: res.data.email,
-          user_pokemons: res.data.user_pokemons,
-          id: res.data._id,
-        };
-        sessionStorage.setItem("user", JSON.stringify(montedData));
+      if (user?.ok === true) {
         router.push("/");
         return toast({
           title: "Bem-vindo de volta!",
