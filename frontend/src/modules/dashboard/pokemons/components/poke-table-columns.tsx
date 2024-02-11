@@ -6,6 +6,8 @@ import { ColumnDef } from "@tanstack/react-table";
 import Image from "next/image";
 import moment from "moment";
 import { DeletePokemon } from "./delete-pokemon";
+import { EditPokemon } from "./edit-pokemon";
+import { ViewStatus } from "./view-status";
 
 export const columns: ColumnDef<UserPokemon>[] = [
   {
@@ -43,8 +45,11 @@ export const columns: ColumnDef<UserPokemon>[] = [
   },
   {
     accessorKey: "base_experience",
-    header: "Experiência Base",
+    header: "Experiência",
     size: 70,
+    cell: ({ row }) => {
+      return <span>{row.original.base_experience.toString()}</span>;
+    },
   },
   {
     accessorKey: "captured_at",
@@ -53,7 +58,9 @@ export const columns: ColumnDef<UserPokemon>[] = [
     cell: ({ row }) => {
       return (
         <span>
-          {moment(row.original.captured_at).format("DD/MM/YYYY H:mm:ss") || "-"}
+          {moment(row.original.captured_at)
+            .format("DD/MM/YYYY H:mm:ss")
+            .toString() || "-"}
         </span>
       );
     },
@@ -61,37 +68,20 @@ export const columns: ColumnDef<UserPokemon>[] = [
   {
     accessorKey: "stats",
     header: "Stats",
-
     size: 250,
     cell: ({ row }) => {
-      return (
-        <div className="flex gap-6 overflow-y-auto min-w-[800px]">
-          {row.original.stats.map((item, idx) => {
-            return (
-              <div
-                key={idx}
-                className="flex bg-zinc-200 p-2 rounded-lg text-black"
-              >
-                <span>
-                  {item.type}: {item.base_stat}
-                </span>
-              </div>
-            );
-          })}
-        </div>
-      );
+      return <ViewStatus fullData={row.original} />;
     },
   },
 
   {
     id: "actions",
     size: 140,
-
     cell: ({ row }) => {
       return (
         <div className="flex justify-center space-x-4">
-          <Button variant="secondary">Edit</Button>
-          <DeletePokemon id={row.original.id} />
+          <EditPokemon fullData={row.original} id={row.original.id} />
+          <DeletePokemon name={row.original.name} id={row.original.id} />
         </div>
       );
     },

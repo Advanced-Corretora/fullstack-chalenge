@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -100,7 +101,9 @@ export function SuccessHunt({ pokemon, successHunt }: any) {
           </div>
         </div>
         <DialogFooter>
-          <Button>Descartar</Button>
+          <DialogClose asChild>
+            <Button>Descartar</Button>
+          </DialogClose>
           <Button onClick={() => saveNewUserPokemon()}>Salvar</Button>
         </DialogFooter>
       </DialogContent>

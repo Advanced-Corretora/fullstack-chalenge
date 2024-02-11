@@ -13,25 +13,34 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { FaTrash } from "react-icons/fa";
-import { deletePokemon } from "../actions";
+import { FaEdit } from "react-icons/fa";
+import { Input } from "@/components/ui/input";
+import { UserPokemon } from "@/types";
 import { useState } from "react";
+import { editPokemon } from "../actions";
 
-export function DeletePokemon({ id, name }: { id: number; name: string }) {
+export function EditPokemon({
+  id,
+  fullData,
+}: {
+  id: number;
+  fullData: UserPokemon;
+}) {
   const { data } = useSession();
 
+  const [name, setName] = useState(fullData.name);
   const [open, setOpen] = useState(false);
 
   const handleDelete = async () => {
     try {
-      const response = await deletePokemon(data?.user?._id, id);
+      const res = await editPokemon(data?.user?._id, name, fullData);
 
-      if (response.ok) {
-        alert("Pokemon deletado com sucesso!");
+      if (res.ok) {
+        alert("Pokemon atualizado com sucesso!");
         setOpen(false);
       }
     } catch (error) {
-      alert("Falha ao deletar pokemon!");
+      alert("Falha ao atualizar pokemon!");
     }
   };
 
@@ -39,24 +48,31 @@ export function DeletePokemon({ id, name }: { id: number; name: string }) {
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button variant="ghost">
-          <FaTrash color="red" size={18} />
+          <FaEdit className="text-foreground" size={18} />
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle>Atenção, Deseja deletar o pokemon {name} ?</DialogTitle>
-          <DialogDescription>
-            Essa ação não pode ser desfeita.
-          </DialogDescription>
+          <DialogTitle>Editar {fullData.name}</DialogTitle>
+          <DialogDescription>Altere o nome do pokemon.</DialogDescription>
         </DialogHeader>
+        <div>
+          <Input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
         <DialogFooter className="justify-end">
           <DialogClose asChild>
             <Button type="button" variant="secondary">
-              Não
+              Cancelar
             </Button>
           </DialogClose>
           <Button type="button" onClick={() => handleDelete()}>
-            Sim
+            Salvar
           </Button>
         </DialogFooter>
       </DialogContent>

@@ -16,7 +16,7 @@ export const updatePokemonById = (
   updatedPokemonData: Record<string, any>
 ) => {
   return UserModel.findOneAndUpdate(
-    { _id: userId, "user_pokemons._id": pokemonId },
+    { _id: userId, "user_pokemons.id": pokemonId },
     { $set: { "user_pokemons.$": updatedPokemonData } },
     { new: true }
   );
@@ -25,7 +25,7 @@ export const updatePokemonById = (
 export const deletePokemonById = (userId: string, pokemonId: string) => {
   return UserModel.findByIdAndUpdate(
     userId,
-    { $pull: { user_pokemons: { _id: pokemonId } } },
+    { $pull: { user_pokemons: { id: pokemonId } } },
     { new: true }
   );
 };

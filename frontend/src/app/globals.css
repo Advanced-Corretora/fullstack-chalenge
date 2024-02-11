@@ -71,6 +71,14 @@
     @apply border-border;
   }
 
+  .card-pokemon {
+    @apply bg-card text-card-foreground;
+
+    background-image: url("/card-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+  }
+
   .bg-auth {
     @apply bg-background text-foreground;
 

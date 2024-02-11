@@ -26,14 +26,9 @@ export default async function DashboardLayout({
   }
 
   return (
-    <main
-      className={cn(
-        "min-h-screen bg-background overflow-x-hidden font-sans antialiased flex",
-        fontSans.variable
-      )}
-    >
+    <div className="flex-col lg:flex-row lg:pt-0 flex h-screen overflow-hidden bg-background">
       <Sidebar />
-      <section className="flex-1">{children}</section>
-    </main>
+      <main className="w-full pt-8  lg:pt-0 lg:px-0 ">{children}</main>
+    </div>
   );
 }

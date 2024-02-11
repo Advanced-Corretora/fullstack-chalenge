@@ -1,4 +1,7 @@
+"use server";
+
 import { Pokemon } from "@/types";
+import { revalidateTag } from "next/cache";
 
 export async function getNewPokemon() {
   try {
@@ -37,6 +40,7 @@ export async function saveNewPokemon(pokemon: Pokemon, userId?: string) {
       body: JSON.stringify(pokemonData),
     });
     const data = await res.json();
+    revalidateTag("pokemons");
     return data;
   } catch (error) {
     return { error };

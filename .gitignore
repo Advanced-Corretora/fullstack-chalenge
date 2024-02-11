@@ -45,6 +45,10 @@ backend/coverage
 
 # production
 /backend/build
+/backend/dist
+/backend/swagger.js
+
+
 
 # misc
 /backend/.DS_Store

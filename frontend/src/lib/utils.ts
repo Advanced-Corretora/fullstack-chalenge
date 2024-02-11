@@ -16,16 +16,6 @@ export const SidebarItems = [
     Icon: FaHome,
   },
   {
-    Name: "Perfil",
-    to: "/profile",
-    Icon: FaUser,
-  },
-  {
-    Name: "Ajustes",
-    to: "/settings",
-    Icon: FiSettings,
-  },
-  {
     Name: "Meus Pokémons",
     to: "/pokemons",
     Icon: FaBookJournalWhills,

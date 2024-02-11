@@ -51,7 +51,7 @@ export const updatePokemonByIdController = async (
   const updatedPokemonData = req.body;
   try {
     await updatePokemonById(userId, pokemonId, updatedPokemonData);
-    res.json({ message: "Pokémon atualizado com sucesso" });
+    res.json({ message: "Pokémon atualizado com sucesso", ok: true });
   } catch (error) {
     let errorMessage = "Failed to request";
     if (error instanceof Error) {
@@ -69,7 +69,7 @@ export const deletePokemonByIdController = async (
   const pokemonId = req.params.pokemonId;
   try {
     await deletePokemonById(userId, pokemonId);
-    res.json({ message: "Pokémon deletado com sucesso" });
+    res.json({ message: "Pokémon deletado com sucesso", ok: true });
   } catch (error) {
     let errorMessage = "Failed to request";
     if (error instanceof Error) {

@@ -7,14 +7,13 @@ import { useState } from "react";
 import { getNewPokemon } from "../services";
 import { SuccessHunt } from "./success-hunt";
 import { TargetPokemon } from "./locked-pokemon";
-import { useSession } from "next-auth/react";
+import { useToast } from "@/components/ui/use-toast";
 
 export function PokeBall() {
   const [isCapturing, setIsCapturing] = useState(false);
   const [successHunt, setSuccessHunt] = useState(false);
   const [pokemon, setPokemon] = useState(null);
-
-  // const { data } = useSession();
+  const { toast } = useToast();
 
   const capturePokemon = async () => {
     try {
@@ -30,11 +29,15 @@ export function PokeBall() {
           setSuccessHunt(true);
         } else {
           setPokemon(null);
+          toast({
+            title: "O Pokemon fugiu",
+            description: "Tente novamente",
+          });
           setSuccessHunt(false);
         }
 
         setIsCapturing(false);
-      }, 4000);
+      }, 2000);
     } catch (error) {
       setIsCapturing(false);
     }
@@ -50,7 +53,7 @@ export function PokeBall() {
           y: isCapturing ? [-200, -200, -150, -200, -150, -200, -150, -200] : 0,
           x: isCapturing ? [-160, -140, -130, -140, -130, -140, -130, -140] : 0,
         }}
-        transition={{ duration: 4 }}
+        transition={{ duration: 2 }}
         onAnimationComplete={() => setIsCapturing(false)}
       >
         <Button
