@@ -3,7 +3,7 @@ export async function LoginRequest(data: {
   password?: string;
 }) {
   try {
-    const res = await fetch("http://localhost:3001/auth/login", {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -25,13 +25,16 @@ export async function RegisterRequest(data: {
   password?: string;
 }) {
   try {
-    const res = await fetch("http://localhost:3001/auth/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/auth/register`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      }
+    );
 
     if (res.status === 200) return { success: true };
   } catch (error) {

@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter as FontSans } from "next/font/google";
+import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import "./globals.css";
@@ -7,10 +7,7 @@ import AuthProvider from "../../providers/sessionProvider";
 import { getServerSession } from "next-auth";
 import { ThemeProvider } from "@/components/theme-provider";
 
-export const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -28,9 +25,9 @@ export default async function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "overflow-hidden bg-background font-sans antialiased",
+          "overflow-hidden bg-background antialiased",
           "bg-auth",
-          fontSans.variable
+          inter.className
         )}
       >
         <AuthProvider session={session}>

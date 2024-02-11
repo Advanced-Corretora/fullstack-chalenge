@@ -32,13 +32,16 @@ export async function saveNewPokemon(pokemon: Pokemon, userId?: string) {
   };
 
   try {
-    const res = await fetch(`http://localhost:3001/user/${userId}/pokemons`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(pokemonData),
-    });
+    const res = await fetch(
+      `${process.env.NEXT_PUBLIC_API_URL}/user/${userId}/pokemons`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(pokemonData),
+      }
+    );
     const data = await res.json();
     revalidateTag("pokemons");
     return data;

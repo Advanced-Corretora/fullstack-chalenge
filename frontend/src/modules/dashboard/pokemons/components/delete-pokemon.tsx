@@ -18,7 +18,7 @@ import { deletePokemon } from "../actions";
 import { useState } from "react";
 
 export function DeletePokemon({ id, name }: { id: number; name: string }) {
-  const { data } = useSession();
+  const { data }: any = useSession();
 
   const [open, setOpen] = useState(false);
 

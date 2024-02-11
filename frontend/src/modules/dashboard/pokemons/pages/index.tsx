@@ -13,7 +13,7 @@ export default async function PokemonsPage({ searchParams }: paramsProps) {
   const session: any = await getServerSession(authOptions);
 
   const pokemons = await fetch(
-    `http://localhost:3001/user/${session?.user?._id}/pokemons`,
+    `${process.env.NEXT_PUBLIC_API_URL}/user/${session?.user?._id}/pokemons`,
     {
       next: { tags: ["pokemons"] },
     }

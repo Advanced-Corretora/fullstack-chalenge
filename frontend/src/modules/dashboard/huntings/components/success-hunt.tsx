@@ -22,7 +22,7 @@ export function SuccessHunt({ pokemon, successHunt }: any) {
 
   const [open, setOpen] = useState(successHunt);
   const [pokemonInfo, setPokemonInfo] = useState<Pokemon | null>(null);
-  const { data } = useSession();
+  const { data }: any = useSession();
 
   const getNewPokemonInfo = async () => {
     try {
@@ -39,7 +39,7 @@ export function SuccessHunt({ pokemon, successHunt }: any) {
 
   const saveNewUserPokemon = async () => {
     try {
-      await saveNewPokemon(pokemonInfo!, data?.user._id);
+      await saveNewPokemon(pokemonInfo!, data?.user?._id);
       toast({
         title: "Obaaaaaa",
         description: "Pokemon adicionado a sua pokedex",

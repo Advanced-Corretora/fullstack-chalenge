@@ -26,7 +26,7 @@ export function EditPokemon({
   id: number;
   fullData: UserPokemon;
 }) {
-  const { data } = useSession();
+  const { data }: any = useSession();
 
   const [name, setName] = useState(fullData.name);
   const [open, setOpen] = useState(false);

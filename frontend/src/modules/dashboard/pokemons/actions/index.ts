@@ -10,7 +10,7 @@ export async function editPokemon(
 ) {
   try {
     const response = await fetch(
-      `http://localhost:3001/user/${userId}/pokemons/${fullData.id}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/user/${userId}/pokemons/${fullData.id}`,
       {
         method: "PUT",
         headers: {
@@ -38,7 +38,7 @@ export async function deletePokemon(
 ) {
   try {
     const response = await fetch(
-      `http://localhost:3001/user/${userId}/pokemons/${pokeId}`,
+      `${process.env.NEXT_PUBLIC_API_URL}/user/${userId}/pokemons/${pokeId}`,
       {
         method: "DELETE",
       }
