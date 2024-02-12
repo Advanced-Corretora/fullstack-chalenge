@@ -35,7 +35,7 @@ Além disso, desejo a funcionalidade de dar nomes aos meus Pokémons e a capacid
 
 3. **Requisitos Adicionais: (Não obrigatório, mas contam pontos a mais)**
    - Configure o deploy da aplicação (tanto frontend quanto backend) em um ambiente de hospedagem à sua escolha (como Heroku, AWS, ou similares).
-   - Criação de um README esplicando como rodar a aplicação também contará pontos a mais
+   - Criação de um README explicando como rodar a aplicação também contará pontos a mais
 
 **Observações Importantes:**
 - Certifique-se de que o dashboard seja intuitivo e de fácil navegação.
