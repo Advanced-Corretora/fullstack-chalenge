@@ -8,10 +8,12 @@ import swaggerUi from "swagger-ui-express";
 import swaggerOutput from "../swagger_output.json";
 import router from "./routes/index";
 import mongoose from "mongoose";
+import "dotenv/config";
 
 const app = express();
 
 const PORT = process.env.PORT || 3001;
+const MONGO_URL = process.env.MONGO_DB_URL as string;
 
 app.use(
   cors({
@@ -29,9 +31,6 @@ const server = http.createServer(app);
 server.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}/`);
 });
-
-const MONGO_URL =
-  "mongodb+srv://mongousr:YpBBLVzyVZlf2Ap4@cluster0.eyer5gh.mongodb.net/";
 
 mongoose.Promise = Promise;
 mongoose.connect(MONGO_URL);

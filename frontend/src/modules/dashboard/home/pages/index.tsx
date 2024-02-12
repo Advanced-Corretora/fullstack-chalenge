@@ -10,7 +10,11 @@ export default async function HomePage() {
     {
       next: { tags: ["pokemons"] },
     }
-  ).then((res) => res.json());
+  )
+    .then((res) => res.json())
+    .catch(() => {
+      return { user_pokemons: [] };
+    });
 
   return (
     <div className="px-8 pt-8">
