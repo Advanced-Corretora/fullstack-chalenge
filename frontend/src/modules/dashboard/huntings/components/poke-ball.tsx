@@ -61,7 +61,12 @@ export function PokeBall() {
           className="bg-transparent hover:bg-transparent"
           disabled={isCapturing}
         >
-          <Image src="/Poke_ball.webp" alt="Pokeball" width={70} height={70} />
+          <Image
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Pokebola-pokeball-png-0.png/601px-Pokebola-pokeball-png-0.png"
+            alt="Pokeball"
+            width={70}
+            height={70}
+          />
         </Button>
       </motion.div>
       {pokemon && <SuccessHunt pokemon={pokemon} successHunt={successHunt} />}
