@@ -45,4 +45,12 @@ Este repositório contém duas pastas principais: `frontend` e `backend`, repres
 
 Certifique-se de ter o Docker instalado em seu sistema para executar o contêiner.
 
+# ATENÇÃO
+
+. URL DO BANCO DE DADOS:
+
+```bash
+mongodb+srv://mongousr:YpBBLVzyVZlf2Ap4@cluster0.eyer5gh.mongodb.net/
+```
+
 Com essas instruções, você deverá ser capaz de iniciar tanto o front-end quanto o back-end deste projeto. Se encontrar algum problema ou tiver dúvidas, não hesite em entrar em contato com a equipe de desenvolvimento.
