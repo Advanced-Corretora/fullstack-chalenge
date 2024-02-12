@@ -15,6 +15,7 @@ import { SidebarItems } from "@/lib/utils";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ModeToggle } from "../toggle-theme";
+import { signOut } from "next-auth/react";
 
 export default function Header() {
   const pathname = usePathname();
@@ -69,7 +70,10 @@ export default function Header() {
                   </div>
 
                   <div className="flex items-center justify-center">
-                    <button className="px-4 py-2 bg-primary text-background rounded-lg">
+                    <button
+                      onClick={() => signOut()}
+                      className="px-4 py-2 bg-primary text-background rounded-lg"
+                    >
                       Logout
                     </button>
                   </div>
