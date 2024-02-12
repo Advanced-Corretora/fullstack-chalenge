@@ -3,19 +3,6 @@
 import { Pokemon } from "@/types";
 import { revalidateTag } from "next/cache";
 
-export async function getNewPokemon() {
-  try {
-    const ramdomNumber = Math.floor(Math.random() * 100) + 1;
-    const res = await fetch(
-      `https://pokeapi.co/api/v2/pokemon?limit=1&offset=${ramdomNumber}`
-    );
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    return { error };
-  }
-}
-
 export async function saveNewPokemon(pokemon: Pokemon, userId?: string) {
   const pokemonData = {
     name: pokemon.name,
@@ -32,20 +19,15 @@ export async function saveNewPokemon(pokemon: Pokemon, userId?: string) {
   };
 
   try {
-    const res = await fetch(
-      `${process.env.NEXT_PUBLIC_API_URL}/user/${userId}/pokemons`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(pokemonData),
-      }
-    );
-    const data = await res.json();
+    await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user/${userId}/pokemons`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pokemonData),
+    });
     revalidateTag("pokemons");
-    return data;
   } catch (error) {
-    return { error };
+    return JSON.stringify({ error });
   }
 }

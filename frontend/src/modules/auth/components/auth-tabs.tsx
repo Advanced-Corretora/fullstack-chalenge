@@ -16,9 +16,11 @@ import { useToast } from "@/components/ui/use-toast";
 import { RegisterRequest } from "../services";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export function AuthTabs() {
   const { toast } = useToast();
+  const [tabs, setTabs] = useState("login");
   const router = useRouter();
   async function handleLogin(data: FormData) {
     try {
@@ -58,17 +60,28 @@ export function AuthTabs() {
       const res = await RegisterRequest(finalData);
 
       if (res?.success === true) {
+        data.delete("password");
+        data.delete("name");
+        data.delete("email");
+        setTabs("login");
         return toast({
           title: "Conta criada com sucesso!",
           description: "Você já pode fazer login.",
         });
       } else {
+        data.delete("password");
+        data.delete("name");
+        data.delete("email");
         return toast({
           title: "Erro ao criar conta!",
           description: "Tente novamente mais tarde.",
         });
       }
     } catch (error) {
+      data.delete("password");
+      data.delete("name");
+      data.delete("email");
+
       return toast({
         title: "Erro ao criar conta!",
         description: "Tente novamente mais tarde.",
@@ -77,10 +90,14 @@ export function AuthTabs() {
   }
 
   return (
-    <Tabs defaultValue="login" className="w-[400px]">
+    <Tabs value={tabs} className="w-[400px]">
       <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="login">Entrar</TabsTrigger>
-        <TabsTrigger value="register">Registrar</TabsTrigger>
+        <TabsTrigger onClick={() => setTabs("login")} value="login">
+          Entrar
+        </TabsTrigger>
+        <TabsTrigger onClick={() => setTabs("register")} value="register">
+          Registrar
+        </TabsTrigger>
       </TabsList>
       <TabsContent value="login">
         <Card>

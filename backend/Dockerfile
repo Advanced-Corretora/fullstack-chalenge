@@ -13,6 +13,8 @@ RUN npm run build
 FROM node:slim
 
 ENV NODE_ENV production
+
+ENV MONGO_DB_URL mongodb+srv://mongousr:YpBBLVzyVZlf2Ap4@cluster0.eyer5gh.mongodb.net/
 USER node
 
 WORKDIR /usr/src/app

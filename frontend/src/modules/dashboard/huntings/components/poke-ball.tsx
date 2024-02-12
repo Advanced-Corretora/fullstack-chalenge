@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
-import { getNewPokemon } from "../services";
 import { SuccessHunt } from "./success-hunt";
 import { TargetPokemon } from "./locked-pokemon";
 import { useToast } from "@/components/ui/use-toast";
+import { getNewPokemon } from "../actions";
 
 export function PokeBall() {
   const [isCapturing, setIsCapturing] = useState(false);
@@ -59,6 +59,7 @@ export function PokeBall() {
         <Button
           onClick={capturePokemon}
           className="bg-transparent hover:bg-transparent"
+          disabled={isCapturing}
         >
           <Image src="/Poke_ball.webp" alt="Pokeball" width={70} height={70} />
         </Button>

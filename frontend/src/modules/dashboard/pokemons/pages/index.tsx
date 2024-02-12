@@ -9,16 +9,25 @@ type paramsProps = {
   };
 };
 
-export default async function PokemonsPage({ searchParams }: paramsProps) {
-  const session: any = await getServerSession(authOptions);
-
+async function getData(session: any) {
   const pokemons = await fetch(
     `${process.env.NEXT_PUBLIC_API_URL}/user/${session?.user?._id}/pokemons`,
     {
       next: { tags: ["pokemons"] },
     }
-  ).then((res) => res.json());
+  );
 
+  if (!pokemons.ok) {
+    throw new Error("Failed to fetch data");
+  }
+
+  return pokemons.json();
+}
+
+export default async function PokemonsPage({ searchParams }: paramsProps) {
+  const session: any = await getServerSession(authOptions);
+
+  const pokemons = await getData(session);
   const pageLimit = Number(searchParams.limit) || 10;
   const pageCount = Math.ceil(pokemons.user_pokemons.length / pageLimit);
 
