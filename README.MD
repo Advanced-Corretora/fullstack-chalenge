@@ -2,6 +2,16 @@
 
 Este repositório contém duas pastas principais: `frontend` e `backend`, representando o front-end e o back-end do projeto, respectivamente.
 
+## URLS De deploy
+
+1. Frontend
+
+### https://poke-dash-seven.vercel.app/
+
+2. Backend
+
+### https://poke-dash-api.onrender.com
+
 ## Iniciando o Front-end
 
 1. Navegue até a pasta `frontend`.
