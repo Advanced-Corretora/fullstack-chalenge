@@ -1,9 +1,9 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { FaHome, FaUser } from "react-icons/fa";
-import { FiSettings } from "react-icons/fi";
 import { MdCatchingPokemon } from "react-icons/md";
 import { FaBookJournalWhills } from "react-icons/fa6";
+import { GiBattleAxe } from "react-icons/gi";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -25,4 +25,9 @@ export const SidebarItems = [
     to: "/huntings",
     Icon: MdCatchingPokemon,
   },
+  {
+    Name: "Batalha Pokémon",
+    to: "/battle",
+    Icon: GiBattleAxe,
+  }
 ];

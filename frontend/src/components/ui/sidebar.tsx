@@ -32,7 +32,7 @@ export default function Sidebar() {
   return (
     <>
       <motion.aside
-        className="hidden sidebar lg:flex h-dvh flex-col z-50 "
+        className="hidden sidebar lg:flex h-dvh flex-col z-50"
         initial={{ width: open ? "15.5rem" : "7rem" }}
         animate={{ width: open ? "15.5rem" : "7rem" }}
         exit={{ width: open ? "15.5rem" : "7rem" }}

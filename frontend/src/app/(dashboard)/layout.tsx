@@ -22,7 +22,7 @@ export default async function DashboardLayout({
   return (
     <div className="flex-col lg:flex-row lg:pt-0 flex h-screen overflow-hidden bg-background">
       <Sidebar />
-      <main className="w-full pt-8  lg:pt-0 lg:px-0 ">{children}</main>
+      <main className="flex-1 pt-8 lg:pt-0 lg:px-0 overflow-y-auto">{children}</main>
     </div>
   );
 }
