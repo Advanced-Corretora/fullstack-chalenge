@@ -1,8 +1,9 @@
 "use client";
-import Inventary from "@/components/Inventary/page";
+
 import SideNavbar from "@/components/side-navbar/page";
 import Image from "next/image";
 import IconPokemon from "../../../public/img-pokemon-pokedex.svg";
+import Pokemons from "@/components/pokemons-list/page";
 
 export default function Dashboard() {
   return (
@@ -19,8 +20,8 @@ export default function Dashboard() {
             <SideNavbar />
           </div>
         </div>
-        <div className="border w-screen">
-          <Inventary />
+        <div className="border w-screen bg-[#FAFBFF]">
+          <Pokemons />
         </div>
       </div>
     </>
