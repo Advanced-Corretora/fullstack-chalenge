@@ -18,29 +18,46 @@ import { Input } from "@/components/ui/input";
 import { UserPokemon } from "@/types";
 import { useState } from "react";
 import { editPokemon } from "../actions";
+import { useToast } from "@/components/ui/use-toast";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export function EditPokemon({
-  id,
   fullData,
 }: {
   id: number;
   fullData: UserPokemon;
 }) {
-  const { data }: any = useSession();
+  const { data } = useSession();
+  const { toast } = useToast();
 
   const [name, setName] = useState(fullData.name);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
     try {
-      const res = await editPokemon(data?.user?._id, name, fullData);
+      setLoading(true)
+      const res = await editPokemon(
+        (data?.user as { _id: string })?._id,
+        name,
+        fullData
+      );
 
       if (res.ok) {
-        alert("Pokemon atualizado com sucesso!");
+        toast({
+          title: "Sucesso",
+          description: "Pokemon atualizado com sucesso!",
+        });
+        setLoading(false)
         setOpen(false);
       }
+      setLoading(false)
     } catch (error) {
-      alert("Falha ao atualizar pokemon!");
+      setLoading(false)
+      toast({
+        title: "Erro",
+        description: "Falha ao atualizar pokemon!",
+      });
     }
   };
 
@@ -71,7 +88,9 @@ export function EditPokemon({
               Cancelar
             </Button>
           </DialogClose>
-          <Button type="button" onClick={() => handleDelete()}>
+          <Button disabled={loading} type="button" onClick={() => handleDelete()}>
+          {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
+
             Salvar
           </Button>
         </DialogFooter>

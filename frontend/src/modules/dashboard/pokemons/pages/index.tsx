@@ -1,5 +1,5 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth";
+import { Session, getServerSession } from "next-auth";
 import { PokeTable } from "../components/poke-table";
 import { columns } from "../components/poke-table-columns";
 
@@ -9,9 +9,9 @@ type paramsProps = {
   };
 };
 
-async function getData(session: any) {
+async function getData(session: Session | null | undefined) {
   const pokemons = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/user/${session?.user?._id}/pokemons`,
+    `${process.env.NEXT_PUBLIC_API_URL}/user/${(session?.user as { _id: string })?._id}/pokemons`,
     {
       next: { tags: ["pokemons"] },
     }
@@ -25,7 +25,7 @@ async function getData(session: any) {
 }
 
 export default async function PokemonsPage({ searchParams }: paramsProps) {
-  const session: any = await getServerSession(authOptions);
+  const session: Session | null = await getServerSession(authOptions);
 
   const pokemons = await getData(session);
   const pageLimit = Number(searchParams.limit) || 10;

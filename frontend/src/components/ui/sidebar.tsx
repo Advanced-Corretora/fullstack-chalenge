@@ -10,7 +10,6 @@ import { FaArrowLeft, FaArrowRight, FaMoon, FaSun } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { signOut } from "next-auth/react";
 import Header from "./header";
-import { ModeToggle } from "../toggle-theme";
 import { useTheme } from "next-themes";
 
 const footerItens = [
@@ -33,7 +32,7 @@ export default function Sidebar() {
   return (
     <>
       <motion.aside
-        className="hidden  lg:flex h-dvh flex-col z-50 "
+        className="hidden sidebar lg:flex h-dvh flex-col z-50 "
         initial={{ width: open ? "15.5rem" : "7rem" }}
         animate={{ width: open ? "15.5rem" : "7rem" }}
         exit={{ width: open ? "15.5rem" : "7rem" }}

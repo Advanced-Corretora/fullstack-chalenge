@@ -21,26 +21,29 @@ import { AiOutlineLoading3Quarters } from "react-icons/ai";
 export function SuccessHunt({
   pokemon,
   successHunt,
+  setPokemon
 }: {
   pokemon: Pokemon;
   successHunt: boolean;
+  setPokemon: (value: React.SetStateAction<Pokemon | null>) => void;
 }) {
   const { toast } = useToast();
 
   const [open, setOpen] = useState(successHunt);
   const [loadig, setLoading] = useState(false);
-  const { data }: any = useSession();
+  const { data } = useSession();
 
   const saveNewUserPokemon = async () => {
     try {
       setLoading(true);
-      await saveNewPokemon(pokemon!, data?.user?._id);
+      await saveNewPokemon(pokemon!, (data?.user as { _id: string })?._id);
       toast({
         title: "Obaaaaaa",
         description: "Pokemon adicionado a sua pokedex",
       });
       setOpen(false);
       setLoading(false);
+      setPokemon(null);
     } catch (error) {
       setLoading(false);
       toast({

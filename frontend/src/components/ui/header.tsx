@@ -49,12 +49,12 @@ export default function Header() {
             </SheetTrigger>
             <SheetContent side="left" className="w-[320px] sm:w-[540px]">
               <SheetHeader className="h-full">
-                <SheetTitle className="text-left">PokeDashboard</SheetTitle>
+                <SheetTitle className="text-left">Pokedash</SheetTitle>
                 <SheetDescription className="flex flex-col h-full gap-2 justify-between">
-                  <div>
+                  <span>
                     {SidebarItems.map((item, index) => (
                       <Link href={item.to} key={index}>
-                        <div className="px-2 py-3 transition-all flex items-start hover:bg-black hover:bg-opacity-15 rounded-lg">
+                        <span className="px-2 py-3 transition-all flex items-start hover:bg-black hover:bg-opacity-15 rounded-lg">
                           <motion.span
                             className="whitespace-nowrap flex-1 text-base text-left"
                             initial={{ opacity: 0, x: -10 }}
@@ -64,19 +64,19 @@ export default function Header() {
                           >
                             {item.Name}
                           </motion.span>
-                        </div>
+                        </span>
                       </Link>
                     ))}
-                  </div>
+                  </span>
 
-                  <div className="flex items-center justify-center">
+                  <span className="flex items-center justify-center">
                     <button
                       onClick={() => signOut()}
                       className="px-4 py-2 bg-primary text-background rounded-lg"
                     >
                       Logout
                     </button>
-                  </div>
+                  </span>
                 </SheetDescription>
               </SheetHeader>
             </SheetContent>

@@ -1,12 +1,12 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { LastPokemons } from "../components/last-pokemons";
-import { getServerSession } from "next-auth";
+import { Session, getServerSession } from "next-auth";
 
 export default async function HomePage() {
-  const session: any = await getServerSession(authOptions);
+  const session: Session | null = await getServerSession(authOptions);
 
   const pokemons = await fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/user/${session?.user?._id}/pokemons`,
+    `${process.env.NEXT_PUBLIC_API_URL}/user/${(session?.user as { _id: string })?._id}/pokemons`,
     {
       next: { tags: ["pokemons"] },
     }

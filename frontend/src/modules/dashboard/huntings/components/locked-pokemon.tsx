@@ -12,8 +12,8 @@ export function TargetPokemon({
 }) {
   return (
     <div
-      className="absolute top-1/2 left-1/3 translate-x-2/4  translate-y-2/4"
-      style={isCapturing ? { display: "none" } : { display: "block" }}
+      className={`absolute top-1/2 left-1/3 translate-x-2/4  translate-y-2/4 ${isCapturing ? "hidden" : "block"}`}
+    
     >
       <Image
         src={pokemon.sprites.front_default || "/locked-pokemon.png"}

@@ -1,6 +1,7 @@
 "use client";
 
 import {
+  ColumnDef,
   ColumnFiltersState,
   PaginationState,
   SortingState,
@@ -21,14 +22,13 @@ import {
 } from "@/components/ui/table";
 import { useCallback, useEffect, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { Pokemon } from "@/types";
-import { Input } from "@/components/ui/input";
+import { Pokemon, UserPokemon } from "@/types";
 
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
 
 interface DataTableProps<TData, TValue> {
-  columns: any;
-  data: Pokemon[];
+  columns: ColumnDef<UserPokemon>[];
+  data: UserPokemon[];
   searchKey: string;
   pageSizeOptions?: number[];
   pageCount: number;
@@ -144,7 +144,7 @@ export function PokeTable<TData, TValue>({
     <>
       <h1 className=" text-3xl font-bold">Meus pokemons</h1>
 
-      <ScrollArea className="rounded-md overflow-auto border h-[calc(100dvh-200px)] lg:h-[calc(100dvh-150px)]">
+      <ScrollArea className="rounded-md overflow-auto border h-[calc(100dvh-150px)] lg:h-[calc(100dvh-100px)]">
         <Table className="relative">
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (

@@ -16,22 +16,39 @@ import {
 import { FaTrash } from "react-icons/fa";
 import { deletePokemon } from "../actions";
 import { useState } from "react";
+import { useToast } from "@/components/ui/use-toast";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export function DeletePokemon({ id, name }: { id: number; name: string }) {
-  const { data }: any = useSession();
+  const { data } = useSession();
+  const { toast } = useToast();
 
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const handleDelete = async () => {
     try {
-      const response = await deletePokemon(data?.user?._id, id);
+      setLoading(true);
+      const response = await deletePokemon(
+        (data?.user as { _id: string })?._id,
+        id
+      );
 
       if (response.ok) {
-        alert("Pokemon deletado com sucesso!");
+        toast({
+          title: "Sucesso",
+          description: "Pokemon deletado com sucesso!",
+        });
+        setLoading(false);
         setOpen(false);
       }
+      setLoading(false);
     } catch (error) {
-      alert("Falha ao deletar pokemon!");
+      setLoading(false);
+      toast({
+        title: "Erro",
+        description: "Falha ao deletar pokemon!",
+      });
     }
   };
 
@@ -55,7 +72,12 @@ export function DeletePokemon({ id, name }: { id: number; name: string }) {
               Não
             </Button>
           </DialogClose>
-          <Button type="button" onClick={() => handleDelete()}>
+          <Button
+            disabled={loading}
+            type="button"
+            onClick={() => handleDelete()}
+          >
+            {loading && <AiOutlineLoading3Quarters className="animate-spin" />}
             Sim
           </Button>
         </DialogFooter>

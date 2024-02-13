@@ -7,11 +7,12 @@ import { useState } from "react";
 import { SuccessHunt } from "./success-hunt";
 import { TargetPokemon } from "./locked-pokemon";
 import { useToast } from "@/components/ui/use-toast";
+import { Pokemon } from "@/types";
 
-export function PokeBall({ huntedPokemon }: { huntedPokemon: any }) {
+export function PokeBall({ huntedPokemon }: { huntedPokemon: Pokemon }) {
   const [isCapturing, setIsCapturing] = useState(false);
   const [successHunt, setSuccessHunt] = useState(false);
-  const [pokemon, setPokemon] = useState(null);
+  const [pokemon, setPokemon] = useState<Pokemon | null>(null);
   const { toast } = useToast();
 
   const capturePokemon = async () => {
@@ -32,13 +33,16 @@ export function PokeBall({ huntedPokemon }: { huntedPokemon: any }) {
           });
           setSuccessHunt(false);
         }
-
-        setIsCapturing(false);
       }, 2000);
     } catch (error) {
-      setIsCapturing(false);
+      toast({
+        title: "Erro ao capturar o pokemon",
+        description: "Tente novamente",
+      });
     }
   };
+
+
 
   return (
     <>
@@ -60,7 +64,7 @@ export function PokeBall({ huntedPokemon }: { huntedPokemon: any }) {
         }}
       >
         <Button
-          onClick={capturePokemon}
+          onClick={() =>capturePokemon()}
           className="bg-transparent hover:bg-transparent"
           disabled={isCapturing}
         >
@@ -72,7 +76,7 @@ export function PokeBall({ huntedPokemon }: { huntedPokemon: any }) {
           />
         </Button>
       </motion.div>
-      {pokemon && <SuccessHunt pokemon={pokemon} successHunt={successHunt} />}
+      {pokemon && <SuccessHunt pokemon={pokemon} setPokemon={setPokemon} successHunt={successHunt} />}
     </>
   );
 }

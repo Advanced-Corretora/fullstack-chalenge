@@ -12,7 +12,7 @@ import Link from "next/link";
 import Image from "next/image";
 
 export function LastPokemons({ pokemons }: { pokemons: UserPokemon[] }) {
-  const numCards = 10; // Número desejado de cards
+  const numCards = 10; 
 
   return (
     <div className="flex flex-col gap-4">
@@ -32,18 +32,18 @@ export function LastPokemons({ pokemons }: { pokemons: UserPokemon[] }) {
           <CarouselContent>
             {pokemons.length > 0 ? (
               [...Array(numCards)].map((_, index) => (
-                <CarouselItem className="basis-1/10" key={index}>
-                  <div className="p-1">
+                <CarouselItem className="basis-1/10 h-[280px]" key={index}>
+                  <div className="h-full">
                     {index < pokemons.length ? (
-                      <Card className="card-pokemon overflow-hidden">
-                        <CardContent className="flex flex-col gap-3 aspect-square overflow-hidden items-center justify-center p-16 bg-black bg-opacity-45">
+                      <Card className="card-pokemon h-full overflow-hidden">
+                        <CardContent className="flex flex-col gap-3 aspect-square overflow-hidden items-center h-full justify-center p-4 bg-black bg-opacity-45">
                           <Image
                             src={pokemons[index].image || "/locked-pokemon.png"}
                             width={180}
                             height={180}
                             alt="Pokemon image"
                           />
-                          <span className="text-3xl font-semibold text-white">
+                          <span className="text-3xl text-center font-semibold text-white">
                             {pokemons[index].name || "????"}
                           </span>
                         </CardContent>
