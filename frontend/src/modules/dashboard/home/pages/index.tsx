@@ -1,6 +1,9 @@
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { LastPokemons } from "../components/last-pokemons";
 import { Session, getServerSession } from "next-auth";
+import { BattleCard } from "../components/battle";
+import { HuntPokemonCard } from "../components/hunt-pokemon";
+import { RankingTable } from "../components/ranking-table";
 
 export default async function HomePage() {
   const session: Session | null = await getServerSession(authOptions);
@@ -17,8 +20,18 @@ export default async function HomePage() {
     });
 
   return (
-    <div className="px-8 pt-8">
+    <div className="px-8 pt-8 pb-8 flex flex-col gap-8">
       <LastPokemons pokemons={pokemons.user_pokemons} />
+
+      <div className="flex items-center gap-4 flex-wrap">
+        <BattleCard/>
+        <HuntPokemonCard/>
+      </div>
+
+      <div className="flex flex-col gap-4">
+        <h1 className="text-2xl font-bold">Ranking de pokemons</h1>
+        <RankingTable pokemons={pokemons.user_pokemons}/>
+      </div>
     </div>
   );
 }
