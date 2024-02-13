@@ -20,7 +20,7 @@ export default async function HomePage() {
     });
 
   return (
-    <div className="px-8 pt-8 pb-8 flex flex-col gap-8">
+    <div className="px-8 pt-8 pb-8 flex flex-col gap-6">
       <LastPokemons pokemons={pokemons.user_pokemons} />
 
       <div className="flex items-center gap-4 flex-wrap">
