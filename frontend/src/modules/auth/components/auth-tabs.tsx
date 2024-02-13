@@ -17,13 +17,16 @@ import { RegisterRequest } from "../services";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export function AuthTabs() {
   const { toast } = useToast();
   const [tabs, setTabs] = useState("login");
+  const [loading, setLoading] = useState(false);
   const router = useRouter();
   async function handleLogin(data: FormData) {
     try {
+      setLoading(true);
       const user = await signIn("credentials", {
         redirect: false,
         email: data.get("email")?.toString(),
@@ -32,17 +35,20 @@ export function AuthTabs() {
 
       if (user?.ok === true) {
         router.push("/");
+        setLoading(false);
         return toast({
           title: "Bem-vindo de volta!",
           description: "Você será redirecionado para o Dashboard.",
         });
       } else {
+        setLoading(false);
         return toast({
           title: "Erro ao fazer login!",
           description: "Verifique suas credenciais e tente novamente.",
         });
       }
     } catch (error) {
+      setLoading(false);
       toast({
         title: "Erro ao fazer login!",
         description: "Tente novamente mais tarde.",
@@ -57,30 +63,25 @@ export function AuthTabs() {
       password: data.get("password")?.toString(),
     };
     try {
+      setLoading(true);
       const res = await RegisterRequest(finalData);
 
       if (res?.success === true) {
-        data.delete("password");
-        data.delete("name");
-        data.delete("email");
         setTabs("login");
+        setLoading(false);
         return toast({
           title: "Conta criada com sucesso!",
           description: "Você já pode fazer login.",
         });
       } else {
-        data.delete("password");
-        data.delete("name");
-        data.delete("email");
+        setLoading(false);
         return toast({
           title: "Erro ao criar conta!",
           description: "Tente novamente mais tarde.",
         });
       }
     } catch (error) {
-      data.delete("password");
-      data.delete("name");
-      data.delete("email");
+      setLoading(false);
 
       return toast({
         title: "Erro ao criar conta!",
@@ -130,7 +131,12 @@ export function AuthTabs() {
               </div>
             </CardContent>
             <CardFooter className="justify-end">
-              <Button>Entrar</Button>
+              <Button className="flex items-center gap-2" disabled={loading}>
+                {loading && (
+                  <AiOutlineLoading3Quarters className="animate-spin" />
+                )}
+                Entrar
+              </Button>
             </CardFooter>
           </form>
         </Card>
@@ -164,7 +170,16 @@ export function AuthTabs() {
               </div>
             </CardContent>
             <CardFooter className="justify-end">
-              <Button type="submit">Cadastrar</Button>
+              <Button
+                type="submit"
+                className="flex items-center gap-2"
+                disabled={loading}
+              >
+                {loading && (
+                  <AiOutlineLoading3Quarters className="animate-spin" />
+                )}
+                Cadastrar
+              </Button>
             </CardFooter>
           </form>
         </Card>

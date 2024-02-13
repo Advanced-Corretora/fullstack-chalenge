@@ -7,9 +7,8 @@ import { useState } from "react";
 import { SuccessHunt } from "./success-hunt";
 import { TargetPokemon } from "./locked-pokemon";
 import { useToast } from "@/components/ui/use-toast";
-import { getNewPokemon } from "../actions";
 
-export function PokeBall() {
+export function PokeBall({ huntedPokemon }: { huntedPokemon: any }) {
   const [isCapturing, setIsCapturing] = useState(false);
   const [successHunt, setSuccessHunt] = useState(false);
   const [pokemon, setPokemon] = useState(null);
@@ -19,13 +18,11 @@ export function PokeBall() {
     try {
       setIsCapturing(true);
 
-      const data = await getNewPokemon();
-
       const captured = Math.random() < 0.5;
 
       setTimeout(() => {
         if (captured) {
-          setPokemon(data.results[0]);
+          setPokemon(huntedPokemon);
           setSuccessHunt(true);
         } else {
           setPokemon(null);
@@ -45,16 +42,22 @@ export function PokeBall() {
 
   return (
     <>
-      <TargetPokemon isCapturing={isCapturing} />
+      <TargetPokemon pokemon={huntedPokemon} isCapturing={isCapturing} />
 
       <motion.div
         className="relative"
         animate={{
-          y: isCapturing ? [-200, -200, -150, -200, -150, -200, -150, -200] : 0,
-          x: isCapturing ? [-160, -140, -130, -140, -130, -140, -130, -140] : 0,
+          y: isCapturing
+            ? [-200, -200, -150, -200, -150, -200, -150, -200, 0]
+            : 0,
+          x: isCapturing
+            ? [-160, -140, -130, -140, -130, -140, -130, -140, 0]
+            : 0,
         }}
         transition={{ duration: 2 }}
-        onAnimationComplete={() => setIsCapturing(false)}
+        onAnimationComplete={() => {
+          setIsCapturing(false);
+        }}
       >
         <Button
           onClick={capturePokemon}

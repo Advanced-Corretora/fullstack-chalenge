@@ -27,7 +27,26 @@ export async function saveNewPokemon(pokemon: Pokemon, userId?: string) {
       body: JSON.stringify(pokemonData),
     });
     revalidateTag("pokemons");
+    revalidateTag("huntingPokemon");
   } catch (error) {
     return JSON.stringify({ error });
+  }
+}
+
+export async function getRandomPokemon() {
+  try {
+    const randomNumber = Math.floor(Math.random() * 898);
+    const res = await fetch(
+      `https://pokeapi.co/api/v2/pokemon/${randomNumber}/`,
+      {
+        next: { tags: ["huntingPokemon"] },
+      }
+    );
+
+    const data = await res.json();
+
+    return JSON.stringify(data);
+  } catch (error) {
+    throw new Error(String(error));
   }
 }
