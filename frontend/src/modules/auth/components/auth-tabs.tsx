@@ -25,6 +25,8 @@ export function AuthTabs() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
+  router.prefetch("/");
+
   async function handleLogin(data: FormData) {
     setLoading(true);
     try {
@@ -35,7 +37,7 @@ export function AuthTabs() {
       });
 
       if (user?.ok === true) {
-        window.location.href = '/';
+        router.push("/", undefined);
         setLoading(false);
         return toast({
           title: "Bem-vindo de volta!",
@@ -110,7 +112,12 @@ export function AuthTabs() {
               suas credenciais para acessar:
             </CardDescription>
           </CardHeader>
-          <form onSubmit={(e) => { e.preventDefault(); handleLogin(new FormData(e.target as HTMLFormElement)) }}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleLogin(new FormData(e.target as HTMLFormElement));
+            }}
+          >
             <CardContent className="space-y-2">
               <div className="space-y-1">
                 <Label htmlFor="email-input">Email</Label>
@@ -150,7 +157,12 @@ export function AuthTabs() {
               Junte-se à nossa comunidade de treinadores! Registre-se abaixo:
             </CardDescription>
           </CardHeader>
-          <form onSubmit={(e) => { e.preventDefault(); handleRegister(new FormData(e.target as HTMLFormElement)) }}>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleRegister(new FormData(e.target as HTMLFormElement));
+            }}
+          >
             <CardContent className="space-y-2">
               <div className="space-y-1">
                 <Label htmlFor="current">Nome</Label>
