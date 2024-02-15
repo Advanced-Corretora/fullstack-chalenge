@@ -74,4 +74,4 @@ Este projeto foi desenvolvido com muita dedicação e representa o máximo do me
 Para contato, você pode me encontrar nos links disponíveis na bio.
 
 *The code never stops!* 👨‍💻
->>>>>>> advanced-pokedex/main
+
