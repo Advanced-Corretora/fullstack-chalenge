@@ -1,0 +1,80 @@
+export const listpokemon = [
+  {
+    Avatar: "Pikachu",
+    Types: "Eletric",
+    Weight: "6.0 kg",
+    Height: "0.4 m",
+  },
+  {
+    Avatar: "Charmander",
+    Types: "Fire",
+    Weight: "8.5 kg",
+    Height: "0.6 m",
+  },
+  {
+    Avatar: "Bulbasaur",
+    Types: "Grass",
+    Weight: "6.9 kg",
+    Height: "0.7 m",
+  },
+  {
+    Avatar: "Squirtle",
+    Types: "Water",
+    Weight: "9.0 kg",
+    Height: "0.5 m",
+  },
+  {
+    Avatar: "Caterpie",
+    Types: "Bug",
+    Weight: "2.9 kg",
+    Height: "0.3 m",
+  },
+  {
+    Avatar: "Weedle",
+    Types: "Bug",
+    Weight: "3.2 kg",
+    Height: "0.3 m",
+  },
+  {
+    Avatar: "Pidgey",
+    Types: "Normal",
+    Weight: "1.8 kg",
+    Height: "0.3 m",
+  },
+  {
+    Avatar: "Rattata",
+    Types: "Normal",
+    Weight: "3.5 kg",
+    Height: "0.3 m",
+  },
+  {
+    Avatar: "Spearow",
+    Types: "Normal",
+    Weight: "2.0 kg",
+    Height: "0.3 m",
+  },
+  {
+    Avatar: "Ekans",
+    Types: "Poison",
+    Weight: "6.9 kg",
+    Height: "2.0 m",
+  },
+  {
+    Avatar: "Pikachu",
+    Types: "Eletric",
+    Weight: "6.0 kg",
+    Height: "0.4 m",
+  },
+  {
+    Avatar: "Charmander",
+    Types: "Fire",
+    Weight: "8.5 kg",
+    Height: "0.6 m",
+  },
+  {
+    Avatar: "Bulbasaur",
+    Types: "Grass",
+    Weight: "6.9 kg",
+    Height: "0.7 m",
+  },
+];
