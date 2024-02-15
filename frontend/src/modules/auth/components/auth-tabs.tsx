@@ -25,7 +25,6 @@ export function AuthTabs() {
   const [loading, setLoading] = useState(false);
   const router = useRouter();
 
-  router.prefetch("/");
 
   async function handleLogin(data: FormData) {
     setLoading(true);
