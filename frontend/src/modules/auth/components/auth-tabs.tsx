@@ -35,7 +35,7 @@ export function AuthTabs() {
       });
 
       if (user?.ok === true) {
-        router.push("/");
+        window.location.href = '/';
         setLoading(false);
         return toast({
           title: "Bem-vindo de volta!",
