@@ -15,13 +15,13 @@ export function SelectPokemon({
   setOpen: (open: boolean) => void;
 }) {
   return (
-    <div className="h-full flex flex-col w-full p-16 left-0 top-0 absolute z-[999999999999] bg-black bg-opacity-85">
-      <h1 className=" text-3xl font-bold flex items-center justify-between">
+    <div className="h-full flex flex-col w-full p-8  left-0 top-0 absolute z-[999999999999] bg-black bg-opacity-85 sm:p-16">
+      <h1 className=" text-3xl font-bold flex items-center justify-between text-white">
         Selecione o seu pokemon para batalhar contra o oponente
 
         <Button onClick={() => {
           setOpen(false)
-        }} className=" text-2xl" variant='outline'>X</Button>
+        }} className=" text-2xl text-foreground" variant='outline'>X</Button>
       </h1>
 
       <div className="flex flex-nowrap gap-2 h-auto py-8 overflow-auto">

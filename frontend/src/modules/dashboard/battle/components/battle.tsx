@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
 import { RevalidateOpponent, UpdatePokemonStats } from "../services";
 import { useSession } from "next-auth/react";
+import { SearchPokemon } from "./search-pokemon";
 
 export function Battle({
   userPokemons,
@@ -20,6 +21,7 @@ export function Battle({
   const [selectedPokemon, setSelectedPokemon] = useState<UserPokemon | null>(
     null
   );
+  const [isLoading, setIsLoading] = useState(false);
   const [opponentHp, setOpponentHp] = useState<number>(0);
   const [playerHp, setPlayerHp] = useState<number>(0);
   const [open, setOpen] = useState(true);
@@ -28,14 +30,17 @@ export function Battle({
   const { data } = useSession();
 
   useEffect(() => {
-    if (selectedPokemon && opponentPokemon) {
+    if (selectedPokemon) {
       const playerHp = selectedPokemon?.stats.find(
         (stat) => stat.type === "hp"
       )?.base_stat;
+      setPlayerHp(playerHp!);
+    }
+
+    if (opponentPokemon) {
       const opponentHp = opponentPokemon.stats.find(
         (stat) => stat.stat.name === "hp"
       )?.base_stat;
-      setPlayerHp(playerHp!);
       setOpponentHp(opponentHp!);
     }
   }, [selectedPokemon, opponentPokemon]);
@@ -65,8 +70,14 @@ export function Battle({
 
     const damagePercentage = 0.4;
 
-    const playerDamage = Math.max(Math.ceil((playerAttack! - opponentDefense!) * damagePercentage), 5);
-    const opponentDamage = Math.max(Math.ceil((opponentAttack! - playerDefense!) * damagePercentage), 5);
+    const playerDamage = Math.max(
+      Math.ceil((playerAttack! - opponentDefense!) * damagePercentage),
+      5
+    );
+    const opponentDamage = Math.max(
+      Math.ceil((opponentAttack! - playerDefense!) * damagePercentage),
+      5
+    );
 
     setPlayerHp(playerHp! - opponentDamage);
     setOpponentHp(opponentHp! - playerDamage);
@@ -94,7 +105,6 @@ export function Battle({
         title: "Você perdeu",
         description: `Você perdeu a batalha contra ${opponentPokemon.name} e seu pokémon perdeus status!`,
       });
-      
     } else if (opponentHp! <= 0) {
       RevalidateOpponent();
       const updatedPokemon = {
@@ -112,10 +122,15 @@ export function Battle({
         }),
       };
       UpdatePokemonStats((data?.user as { _id: string })?._id, updatedPokemon);
-      return toast({
+      setIsLoading(true);
+
+      toast({
         title: "Você ganhou",
         description: `Você ganhou a batalha contra ${opponentPokemon.name} e seu pokémon ganhou novos status!`,
       });
+      return setTimeout(() => {
+        setIsLoading(false);
+      }, 4000);
     } else {
       return toast({
         title: "Batalha em andamento",
@@ -126,15 +141,24 @@ export function Battle({
 
   return (
     <div className="arena h-full flex-1 flex flex-col justify-end">
+      {isLoading && <SearchPokemon />}
       {!open ? (
         <>
           <div className="overflow-auto gap-4 w-full flex items-end  justify-between flex-1 pb-24 px-[5%] md:px-[10%]">
-            <Opponent opponentPokemon={opponentPokemon} hp={opponentHp} />
+            <Opponent
+              isLoading={isLoading}
+              opponentPokemon={opponentPokemon}
+              hp={opponentHp}
+            />
 
-            <UserSelectedPokemon selectedPokemon={selectedPokemon} hp={playerHp} />
+            <UserSelectedPokemon
+              selectedPokemon={selectedPokemon}
+              hp={playerHp}
+            />
           </div>
 
           <Button
+            disabled={isLoading}
             className="text-lg font-black uppercase rounded-none h-20"
             variant="outline"
             onClick={() => battlePokemon()}
@@ -142,12 +166,15 @@ export function Battle({
             Atacar
           </Button>
         </>
-      ) : open && (
-        <SelectPokemon
-          userPokemons={userPokemons.user_pokemons}
-          setSelectedPokemon={setSelectedPokemon}
-          setOpen={setOpen}
-        />
+      ) : (
+        !open &&
+        open && (
+          <SelectPokemon
+            userPokemons={userPokemons.user_pokemons}
+            setSelectedPokemon={setSelectedPokemon}
+            setOpen={setOpen}
+          />
+        )
       )}
     </div>
   );

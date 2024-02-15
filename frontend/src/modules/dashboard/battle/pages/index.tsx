@@ -1,5 +1,4 @@
 import { Session, getServerSession } from "next-auth";
-import { SelectPokemon } from "../components/select-pokemon";
 import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import { Battle } from "../components/battle";
 
@@ -9,7 +8,9 @@ async function getData(session: Session | null | undefined) {
       (session?.user as { _id: string })?._id
     }/pokemons`,
     {
-      next: { tags: ["pokemons"] },
+      next: {
+        tags: [`user_${(session?.user as { _id: string })?._id}_pokemons`],
+      },
     }
   );
 
@@ -20,17 +21,25 @@ async function getData(session: Session | null | undefined) {
   return pokemons.json();
 }
 
-export default async function BattlePage() {
-  const session: Session | null = await getServerSession(authOptions);
-
-  const userPokemons = await getData(session);
+async function getOpponentPokemon() {
   const random = Math.floor(Math.random() * 867) + 1;
+
   const opponentPokemon = await fetch(
     `https://pokeapi.co/api/v2/pokemon/${random}`,
     {
       next: { tags: ["opponent"] },
     }
-  ).then((res) => res.json());
+  );
+
+  return opponentPokemon.json();
+}
+
+export default async function BattlePage() {
+  const session: Session | null = await getServerSession(authOptions);
+
+  const userPokemons = await getData(session);
+  const opponentPokemon = await getOpponentPokemon();
+
   return (
     <Battle userPokemons={userPokemons} opponentPokemon={opponentPokemon} />
   );

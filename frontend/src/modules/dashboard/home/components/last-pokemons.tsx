@@ -20,7 +20,7 @@ export function LastPokemons({ pokemons }: { pokemons: UserPokemon[] }) {
         <h1 className="text-2xl font-bold">Ultimos Pokemons capturados</h1>
         <Link href="/pokemons">Ver todos</Link>
       </div>
-      {pokemons.length > 0 ? (
+      {pokemons && pokemons.length > 0 ? (
         <Carousel
           opts={{
             slidesToScroll: 1,

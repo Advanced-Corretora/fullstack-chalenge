@@ -19,7 +19,7 @@ export async function UpdatePokemonStats(id: string, fullData: UserPokemon) {
         body: JSON.stringify(fullData),
       }
     );
-    return revalidateTag("pokemons");
+    revalidateTag(`user_${id}_pokemons`); 
   } catch (error) {
     throw new Error("Failed to request");
   }

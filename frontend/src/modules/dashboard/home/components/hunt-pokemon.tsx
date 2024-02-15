@@ -10,7 +10,7 @@ import Link from "next/link";
 
 export function HuntPokemonCard() {
   return (
-    <Card className="flex-1">
+    <Card className="flex-1 min-w-[300px]">
       <CardHeader>
         <CardTitle>Caçar Pokemons</CardTitle>
         <CardDescription>
