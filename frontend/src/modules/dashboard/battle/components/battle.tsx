@@ -167,14 +167,11 @@ export function Battle({
           </Button>
         </>
       ) : (
-        !open &&
-        open && (
-          <SelectPokemon
-            userPokemons={userPokemons.user_pokemons}
-            setSelectedPokemon={setSelectedPokemon}
-            setOpen={setOpen}
-          />
-        )
+        <SelectPokemon
+          userPokemons={userPokemons.user_pokemons}
+          setSelectedPokemon={setSelectedPokemon}
+          setOpen={setOpen}
+        />
       )}
     </div>
   );
