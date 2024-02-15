@@ -37,7 +37,7 @@ export function AuthTabs() {
       });
 
       if (user?.ok === true) {
-        router.push("/", undefined);
+        router.push("/");
         setLoading(false);
         return toast({
           title: "Bem-vindo de volta!",
