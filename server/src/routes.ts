@@ -4,9 +4,9 @@ import { authMiddleware } from "./middleware/authMiddleware";
 
 const routes = Router();
 
-routes.post("/user", new UserController().create);
-routes.post("/login", new UserController().login);
-
+routes.post("/auth/user", new UserController().create);
+routes.post("/auth/login", new UserController().login);
+routes.post("/users/capture", UserController.capturePokemon);
 routes.use(authMiddleware);
 
 routes.get("/profile", new UserController().getProfile);

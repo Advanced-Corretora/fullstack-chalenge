@@ -3,6 +3,12 @@ import { BadRequestError } from "../helpers/api-erros";
 import { userRepository } from "../repositories/userRepository";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import { UserPokemon } from "../entities/UserPokemon";
+
+import { Pokemon } from "../entities/Pokemon";
+import { getRepository } from "typeorm";
+
+const userPokemon = new UserPokemon();
 
 export class UserController {
   async create(req: Request, res: Response) {
@@ -58,5 +64,30 @@ export class UserController {
 
   async getProfile(req: Request, res: Response) {
     return res.json(req.user);
+  }
+
+  static async capturePokemon(req: Request, res: Response) {
+    const { email } = req.body;
+    console.log(email);
+    const userExists = await userRepository.findOneBy({ email });
+
+    if (!userExists) {
+      throw new BadRequestError("E-mail não existe!");
+    }
+
+    return res.json(email);
+
+    //   const newUser = userRepository.create({
+    //     name,
+    //     email,
+    //     password: hashPassword,
+    //   });
+
+    //   await userRepository.save(newUser);
+
+    //   const { password: _, ...user } = newUser;
+
+    //   return res.status(201).json(user);
+    // }
   }
 }
