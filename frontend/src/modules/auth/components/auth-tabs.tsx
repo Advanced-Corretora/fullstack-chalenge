@@ -24,9 +24,10 @@ export function AuthTabs() {
   const [tabs, setTabs] = useState("login");
   const [loading, setLoading] = useState(false);
   const router = useRouter();
+
   async function handleLogin(data: FormData) {
+    setLoading(true);
     try {
-      setLoading(true);
       const user = await signIn("credentials", {
         redirect: false,
         email: data.get("email")?.toString(),
@@ -94,22 +95,22 @@ export function AuthTabs() {
     <Tabs value={tabs} className="w-[400px]">
       <TabsList className="grid w-full grid-cols-2">
         <TabsTrigger onClick={() => setTabs("login")} value="login">
-          Entrar
+          Login
         </TabsTrigger>
         <TabsTrigger onClick={() => setTabs("register")} value="register">
-          Registrar
+          Registro
         </TabsTrigger>
       </TabsList>
       <TabsContent value="login">
         <Card>
           <CardHeader>
-            <CardTitle>Entrar</CardTitle>
+            <CardTitle>Login</CardTitle>
             <CardDescription>
               Bem-vindo ao Dashboard de Caça aos Pokémons! Por favor, insira
               suas credenciais para acessar:
             </CardDescription>
           </CardHeader>
-          <form action={handleLogin}>
+          <form onSubmit={(e) => { e.preventDefault(); handleLogin(new FormData(e.target as HTMLFormElement)) }}>
             <CardContent className="space-y-2">
               <div className="space-y-1">
                 <Label htmlFor="email-input">Email</Label>
@@ -144,12 +145,12 @@ export function AuthTabs() {
       <TabsContent value="register">
         <Card>
           <CardHeader>
-            <CardTitle>Registrar</CardTitle>
+            <CardTitle>Registro</CardTitle>
             <CardDescription>
               Junte-se à nossa comunidade de treinadores! Registre-se abaixo:
             </CardDescription>
           </CardHeader>
-          <form action={(e) => handleRegister(e)}>
+          <form onSubmit={(e) => { e.preventDefault(); handleRegister(new FormData(e.target as HTMLFormElement)) }}>
             <CardContent className="space-y-2">
               <div className="space-y-1">
                 <Label htmlFor="current">Nome</Label>
