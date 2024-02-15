@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import ImgPokemon from "../../../public/img-pokemon-pokedex.svg";
-import ImgAsh from "../../../public/img-ash.png";
+import ImgPokemon from "../../../../public/img-pokemon-pokedex.svg";
+import ImgAsh from "../../../../public/img-ash.png";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -30,20 +30,20 @@ export default function Register() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/user`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
-
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/user`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
       if (response.ok) {
-        // Trate a resposta de sucesso
         console.log("Usuário registrado com sucesso");
-        router.push("/login"); // Redireciona para a página de login após o registro
+        router.push("/auth/login");
       } else {
-        // Trate erros de resposta
         console.log("Erro ao registrar usuário");
       }
     } catch (error) {
