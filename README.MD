@@ -67,7 +67,7 @@ Certifique-se de ter o Docker instalado em seu sistema para executar o contêine
 
 # ATENÇÃO
 
-. URL DO BANCO DE DADOS:
+URL DO BANCO DE DADOS:
 
 ```bash
 mongodb+srv://mongousr:YpBBLVzyVZlf2Ap4@cluster0.eyer5gh.mongodb.net/
