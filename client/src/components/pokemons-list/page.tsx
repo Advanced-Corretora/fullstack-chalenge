@@ -78,7 +78,7 @@ const PokemonList: React.FC = () => {
                 height={100}
                 src={pokemon.image}
                 alt={pokemon.name}
-                className="mx-auto" // Centraliza a imagem
+                className="mx-auto"
               />
               <div className="w-[200px] bg-slate-200 h-[1px] mt-2"></div>
               <div className="text-center mt-3">

@@ -3,8 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-import ImgPokemon from "../../../public/img-pokemon-pokedex.svg";
-import ImgAsh from "../../../public/img-ash.png";
+import ImgPokemon from "../../../../public/img-pokemon-pokedex.svg";
+import ImgAsh from "../../../../public/img-ash.png";
 
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -16,31 +16,32 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevenir o comportamento padrão do formulário
+    e.preventDefault();
 
-    // Aqui você faria a chamada para o backend
     try {
-      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/login`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
+      const response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/auth/login`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ email, password }),
+        }
+      );
       if (response.ok) {
         const { token } = await response.json();
-        // Armazene o token conforme necessário, por exemplo, em localStorage
+
         localStorage.setItem("authToken", token);
-        router.push("/dashboard"); // Redirecionar para a página de dashboard
+        router.push("/dashboard");
       } else {
-        // Tratar casos de erro, como mostrar uma mensagem ao usuário
         alert("Login falhou!");
       }
     } catch (error) {
       console.error("Erro ao fazer login", error);
     }
   };
+
   return (
     <main className="flex min-h-screen flex-row items-center bg-slate-100">
       {/* Left Side */}
