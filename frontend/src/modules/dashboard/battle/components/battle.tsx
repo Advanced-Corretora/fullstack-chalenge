@@ -101,6 +101,7 @@ export function Battle({
         }),
       };
       UpdatePokemonStats((data?.user as { _id: string })?._id, updatedPokemon);
+      setOpen(true)
       return toast({
         title: "Você perdeu",
         description: `Você perdeu a batalha contra ${opponentPokemon.name} e seu pokémon perdeus status!`,
