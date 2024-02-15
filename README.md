@@ -1,75 +1,73 @@
-# README - Tecnologias Utilizadas nesse projeto : 
+# Nome do Projeto
 
-#Front-end 
-NextJS
+Este projeto foi desenvolvido como parte de um processo seletivo. Ele demonstra minhas habilidades e conhecimentos adquiridos em 1 ano e 5 meses de estudo em desenvolvimento web. O projeto ainda está em fase de desenvolvimento e possui várias áreas para melhorias e implementações futuras.
 
-## URLS De deploy
+## Tecnologias Utilizadas
 
-### 1. Frontend
+Este projeto é composto por uma stack moderna e poderosa, tanto no front-end quanto no back-end.
 
- https://poke-dash-seven.vercel.app/
+### Front-end:
 
-### 2. Backend
+- React
+- TypeScript
+- Next.js
+- TailwindCSS
+- @shadcn/ui
+- React Icons
+- ESLint
+- PostCSS
 
- https://poke-dash-api.onrender.com
+### Back-end:
 
-## Iniciando o Front-end
+- Node.js
+- TypeScript
+- Express
+- TypeORM
+- Axios
+- CORS
+- PostgreSQL
 
-1. Navegue até a pasta `frontend`.
+## Considerações Iniciais
 
-2. Instale as dependências necessárias usando o comando:
+O projeto ainda não está finalizado e possui as seguintes limitações e funcionalidades em desenvolvimento:
 
-   ```bash
-   npm install
-   ```
-3. Após a instalação das dependências, inicie o projeto utilizando o comando:
+- ❌ Não responsivo
+- ❌ Função de Coletar Pokémons não finalizada
+- ❌ Testes não incluídos
+- ❌ Docker não configurado
+- ❌ Swagger para documentação de API não incluído
+- ❌ Mensagens de avisos
 
-   ```bash
-   npm run dev
-   ```
-4. Não esqueça de configurar a URL da API no arquivo de ambiente (`.env`).
+Funcionalidades que estão operacionais:
 
-## Iniciando o Back-end
+- ✅ Front-end: Tela de Login, Registro, Dashboard
+- ✅ Back-end: Autenticação
 
-### Localmente
+## Como Rodar o Projeto Localmente
 
-1. Navegue até a pasta `backend`.
+Para executar o projeto na sua máquina local, siga as instruções abaixo:
 
-2. Instale as dependências necessárias utilizando o comando:
+### Front-end:
 
-   ```bash
-   npm install
-   ```
-3. Após a instalação, inicie o servidor local com o comando:
+1. Execute `npm install` para instalar todas as dependências.
+2. Execute `npm run dev` para iniciar o projeto localmente.
 
-   ```bash
-   npm run dev
-   ```
+### Back-end:
 
-### Com Docker
+1. Preencha todos os requisitos do arquivo `.env.example`.
+2. Conecte-se a um gerenciador de banco de dados. Recomendo o uso do pgAdmin4 para PostgreSQL.
+3. Crie uma migration após preencher todos os requisitos no `.env.example`:
+   - Execute `npm run migrate:migrate` seguido por `npm run migration:run`.
+4. Utilizo o Beekeeper para visualização das tabelas criadas.
 
-1. Navegue até a pasta `backend`.
+Após seguir as instruções acima, você pode criar um novo usuário e logar com o mesmo.
 
-2. Construa a imagem Docker usando o comando:
+## Observações
 
-   ```bash
-   docker build -t nome-da-imagem .
-   ```
-   Substitua `nome-da-imagem` pelo nome desejado para a imagem.
+Muitas informações úteis podem ser obtidas no console do DevTools, incluindo respostas para algumas funções não finalizadas, como a ação de coletar um Pokémon.
 
-3. Execute o contêiner Docker na porta desejada:
+Este projeto foi desenvolvido com muita dedicação e representa o máximo do meu conhecimento e esforço ao longo de 1 ano e 5 meses de estudo. Qualquer contribuição é bem-vinda e será de grande ajuda.
 
-   ```bash
-   docker run -p porta-desejada:porta-interna nome-da-imagem
-   ```
-   Substitua `porta-desejada` pela porta que deseja expor externamente e `porta-interna` pela porta interna em que o servidor está sendo executado.
+Para contato, você pode me encontrar nos links disponíveis na bio.
 
-Certifique-se de ter o Docker instalado em seu sistema para executar o contêiner.
-
-# ATENÇÃO
-
-URL DO BANCO DE DADOS:
-
-```bash
-mongodb+srv://mongousr:YpBBLVzyVZlf2Ap4@cluster0.eyer5gh.mongodb.net/
-```
+*The code never stops!*
