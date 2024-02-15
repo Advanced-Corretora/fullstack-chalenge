@@ -1,10 +1,13 @@
-# Advanced-pokedex
+# Advanced-pokedex 🖥️
 
 Este projeto foi desenvolvido como parte de um processo seletivo. Ele demonstra minhas habilidades e conhecimentos adquiridos em 1 ano e 5 meses de estudo em desenvolvimento web. O projeto ainda está em fase de desenvolvimento e possui várias áreas para melhorias e implementações futuras.
 
 ## Tecnologias Utilizadas
 
 Este projeto é composto por uma stack moderna e poderosa, tanto no front-end quanto no back-end.
+
+## Link deploy front-end :
+https://advanced-pokedex-y951.vercel.app/
 
 ### Front-end:
 
@@ -70,4 +73,4 @@ Este projeto foi desenvolvido com muita dedicação e representa o máximo do me
 
 Para contato, você pode me encontrar nos links disponíveis na bio.
 
-*The code never stops!*
+*The code never stops!* 👨‍💻
