@@ -36,9 +36,9 @@ O projeto ainda não está finalizado e possui as seguintes limitações e funci
 
 - ❌ Não responsivo
 - ❌ Sincronizar Usuário 
-- ❌ Testes não incluídos
+- ❌ Testes não inclusos
 - ❌ Docker não configurado
-- ❌ Swagger para documentação de API não incluído
+- ❌ Swagger para documentação de API não incluso
 - ❌ Mensagens de avisos
 
 Funcionalidades que estão operacionais:
