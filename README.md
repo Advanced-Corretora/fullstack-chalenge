@@ -80,7 +80,7 @@ Após seguir as instruções acima, você pode criar um novo usuário e logar co
 
 Muitas informações úteis podem ser obtidas no console do DevTools, incluindo respostas para algumas funções não finalizadas, como a ação de coletar um Pokémon.
 
-Este projeto foi desenvolvido com muita dedicação e representa o máximo do meu conhecimento e esforço ao longo de 1 ano e 5 meses de estudo. Qualquer contribuição é bem-vinda e será de grande ajuda.
+Este projeto foi desenvolvido com muita dedicação e representa o máximo do meu conhecimento e esforço ao longo desses anos de estudo. Qualquer contribuição é bem-vinda e será de grande ajuda.
 
 Para contato, você pode me encontrar nos links disponíveis na bio.
 
