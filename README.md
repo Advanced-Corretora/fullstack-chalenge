@@ -35,7 +35,7 @@ https://advanced-pokedex-y951.vercel.app/
 O projeto ainda não está finalizado e possui as seguintes limitações e funcionalidades em desenvolvimento:
 
 - ❌ Não responsivo
-- ❌ Função de Coletar Pokémons não finalizada
+- ❌ Sincronizar Usuário 
 - ❌ Testes não incluídos
 - ❌ Docker não configurado
 - ❌ Swagger para documentação de API não incluído
@@ -43,8 +43,17 @@ O projeto ainda não está finalizado e possui as seguintes limitações e funci
 
 Funcionalidades que estão operacionais:
 
-- ✅ Front-end: Tela de Login, Registro, Dashboard
-- ✅ Back-end: Autenticação
+- ✅ Front-end:
+- ✅ Tela de Login
+- ✅ Registro
+- ✅ Dashboard
+- ✅ Lista Pokemons
+- ✅ Capturar Pokemons
+- ✅ Back-end:
+- ✅ Criar Novo Usuario
+- ✅ Logar com Novo Usuario
+- ✅ Receber Pokemons
+- ✅ Ler Pokemons
 
 ## Como Rodar o Projeto Localmente
 
@@ -58,10 +67,12 @@ Para executar o projeto na sua máquina local, siga as instruções abaixo:
 ### Back-end:
 
 1. Preencha todos os requisitos do arquivo `.env.example`.
-2. Conecte-se a um gerenciador de banco de dados. Recomendo o uso do pgAdmin4 para PostgreSQL.
-3. Crie uma migration após preencher todos os requisitos no `.env.example`:
-   - Execute `npm run migrate:migrate` seguido por `npm run migration:run`.
-4. Utilizo o Beekeeper para visualização das tabelas criadas.
+2. Certificando que você possui algum banco de dados instalado na sua máquina.
+3. Conecte-se a um gerenciador de banco de dados. Recomendo o uso do pgAdmin4 para PostgreSQL.
+4. Crie uma tabela nova.
+5. Crie uma migration após preencher todos os requisitos no `.env.example`:
+   - Execute `npm run migration:genarete` seguido por `npm run migration:run`.
+6. Utilizo o Beekeeper para visualização das tabelas criadas.
 
 Após seguir as instruções acima, você pode criar um novo usuário e logar com o mesmo.
 
