@@ -1,6 +1,6 @@
 # Advanced-pokedex 🖥️
 
-Este projeto foi desenvolvido como parte de um processo seletivo. Ele demonstra minhas habilidades e conhecimentos adquiridos em 1 ano e 5 meses de estudo em desenvolvimento web. O projeto ainda está em fase de desenvolvimento e possui várias áreas para melhorias e implementações futuras.
+Este projeto foi desenvolvido como parte de um processo seletivo. Ele demonstra minhas habilidades e conhecimentos adquiridos nesses anos de estudo em desenvolvimento web. O projeto ainda está em fase de desenvolvimento e possui várias áreas para melhorias e implementações futuras.
 
 ## Tecnologias Utilizadas
 
